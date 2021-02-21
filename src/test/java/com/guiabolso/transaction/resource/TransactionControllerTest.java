@@ -37,8 +37,6 @@ public class TransactionControllerTest {
 		mockMvc.perform(get("/{id}/transacoes/{ano}/{mes}", 1000, 2007, 10).contentType(APPLICATION_JSON))
 				.andExpect(status().isOk()).andExpect(jsonPath("$", hasSize(10)))
 				.andExpect(jsonPath("$[0].descricao", notNullValue()));
-		;
-
 	}
 
 }
