@@ -2,7 +2,7 @@ package com.guiabolso.transaction;
 
 import org.junit.jupiter.api.Test;
 
-public class CaseGuiabolso1ApplicationTest {
+public class CaseGuiabolsoApplicationTest {
 
 	@Test
 	public void main() {

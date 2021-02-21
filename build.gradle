@@ -2,10 +2,11 @@ plugins {
 	id 'org.springframework.boot' version '2.4.2'
 	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
 	id 'java'
+	id 'jacoco'
 }
 
 group = 'com.guiabolso.transaction'
-version = '0.0.1-SNAPSHOT'
+version = '0.0.1'
 sourceCompatibility = '11'
 
 repositories {
@@ -19,10 +20,23 @@ dependencies {
 	testImplementation 'org.junit.jupiter:junit-jupiter-api:5.3.1'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.3.1'
     
-    // https://mvnrepository.com/artifact/org.mockito/mockito-core
 	testImplementation group: 'org.mockito', name: 'mockito-core', version: '3.7.7'
 }
 
 test {
+	finalizedBy jacocoTestReport
 	useJUnitPlatform()
+}
+
+jacoco {
+    toolVersion = "0.8.6"
+    reportsDirectory = file("$buildDir/reports/jacoco")
+}
+
+jacocoTestReport {
+    reports {
+        xml.enabled false
+        csv.enabled false
+        html.destination file("${buildDir}/jacocoHtml")
+    }
 }
