@@ -13,8 +13,8 @@ import org.springframework.web.servlet.NoHandlerFoundException;
 @ControllerAdvice
 public class ResourceExceptionHandler {
 
-	@ExceptionHandler(NumberFormatException.class)
-	public ResponseEntity<StandardError> numberFormatException(NumberFormatException e, HttpServletRequest request) {
+	@ExceptionHandler({ NumberFormatException.class, NumberValidationException.class })
+	public ResponseEntity<StandardError> numberFormatException(RuntimeException e, HttpServletRequest request) {
 
 		StandardError err = new StandardError(System.currentTimeMillis(), HttpStatus.BAD_REQUEST.value(), "Bad Request",
 				e.getMessage(), request.getRequestURI());

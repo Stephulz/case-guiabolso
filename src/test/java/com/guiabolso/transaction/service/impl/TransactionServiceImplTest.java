@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
+import org.mockito.InjectMocks;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import com.guiabolso.transaction.model.Transaction;
@@ -14,7 +14,7 @@ import com.guiabolso.transaction.model.Transaction;
 @SpringBootTest
 public class TransactionServiceImplTest {
 
-	@Mock
+	@InjectMocks
 	TransactionServiceImpl service;
 
 	@Test
@@ -35,9 +35,18 @@ public class TransactionServiceImplTest {
 	}
 
 	@Test
-	public void findAllTestMonthException() {
+	public void findAllTestMonthExceptionHigh() {
 		try {
 			service.findAll("1000", 2007, 13);
+		} catch (Exception e) {
+			assertEquals(e.getMessage(), "Insira um mes valido (01-12)");
+		}
+	}
+
+	@Test
+	public void findAllTestMonthExceptionLow() {
+		try {
+			service.findAll("1000", 2007, 0);
 		} catch (Exception e) {
 			assertEquals(e.getMessage(), "Insira um mes valido (01-12)");
 		}
@@ -47,6 +56,24 @@ public class TransactionServiceImplTest {
 	public void findAllTestIdException() {
 		try {
 			service.findAll("100001", 2007, 10);
+		} catch (Exception e) {
+			assertEquals(e.getMessage(), "Id fora do alcance (1.000 a 100.000)");
+		}
+	}
+
+	@Test
+	public void findAllTestIdExceptionValid() {
+		try {
+			service.findAll("q", 2007, 10);
+		} catch (Exception e) {
+			assertEquals(e.getMessage(), "Id invalido, insira um numero inteiro entre 1.000 e 100.000");
+		}
+	}
+
+	@Test
+	public void findAllTestIdExceptionRange() {
+		try {
+			service.findAll("1", 2007, 10);
 		} catch (Exception e) {
 			assertEquals(e.getMessage(), "Id fora do alcance (1.000 a 100.000)");
 		}

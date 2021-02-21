@@ -10,6 +10,7 @@ import java.util.concurrent.ThreadLocalRandom;
 
 import org.springframework.stereotype.Service;
 
+import com.guiabolso.transaction.exception.NumberValidationException;
 import com.guiabolso.transaction.model.Transaction;
 import com.guiabolso.transaction.service.TransactionService;
 import com.guiabolso.transaction.util.Constants;
@@ -48,25 +49,17 @@ public class TransactionServiceImpl implements TransactionService {
 	}
 
 	private void validateParams(String id, Integer year, Integer month) {
-		try {
-			if (year < 1)
-				throw new NumberFormatException(Utils.getMessage("number.format.year"));
-		} catch (Exception e) {
+		if (year < 1)
 			throw new NumberFormatException(Utils.getMessage("number.format.year"));
-		}
 
-		try {
-			if (month < 1 || month > 12)
-				throw new NumberFormatException(Utils.getMessage("number.format.month"));
-		} catch (Exception e) {
+		if (month < 1 || month > 12)
 			throw new NumberFormatException(Utils.getMessage("number.format.month"));
-		}
 
 		try {
 			Integer parsedId = Integer.parseInt(id);
 			if (parsedId < 1000 || parsedId > 100000)
-				throw new NumberFormatException(Utils.getMessage("number.format.id.range"));
-		} catch (Exception e) {
+				throw new NumberValidationException(Utils.getMessage("number.format.id.range"));
+		} catch (NumberFormatException e) {
 			throw new NumberFormatException(Utils.getMessage("number.format.id"));
 		}
 	}

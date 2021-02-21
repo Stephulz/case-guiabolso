@@ -1,6 +1,7 @@
 package com.guiabolso.transaction.model;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import org.junit.jupiter.api.Test;
 
@@ -28,5 +29,9 @@ public class StandardErrorTest {
 		assertEquals("error1", transaction.getError());
 		assertEquals("message1", transaction.getMessage());
 		assertEquals("/path1", transaction.getPath());
+
+		StandardError transactionNoArgs = new StandardError();
+		assertNotNull(transactionNoArgs);
+
 	}
 }
