@@ -8,8 +8,8 @@ public class TransactionTest {
 
 	@Test
 	public void testTransaction() {
-		Transaction transaction = new Transaction("Descrição", 1190335478675L, 9508275);
-		assertEquals("Descrição", transaction.getDescricao());
+		Transaction transaction = new Transaction("DescriÃ§Ã£o", 1190335478675L, 9508275);
+		assertEquals("DescriÃ§Ã£o", transaction.getDescricao());
 		assertEquals(Long.valueOf(1190335478675L), transaction.getData());
 		assertEquals(Integer.valueOf(9508275), transaction.getValor());
 		transaction.setDescricao("asd");
