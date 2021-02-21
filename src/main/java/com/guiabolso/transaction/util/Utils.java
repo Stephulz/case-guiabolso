@@ -5,7 +5,7 @@ import java.util.ResourceBundle;
 public class Utils {
 
 	public static String getMessage(String messageCode) {
-		var message = ResourceBundle.getBundle("messages");
+		ResourceBundle message = ResourceBundle.getBundle("messages");
 		return message.getString(messageCode);
 	}
 

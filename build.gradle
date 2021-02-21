@@ -7,7 +7,7 @@ plugins {
 
 group = 'com.guiabolso.transaction'
 version = '0.0.1'
-sourceCompatibility = '11'
+sourceCompatibility = '8'
 
 repositories {
 	mavenCentral()
@@ -30,13 +30,11 @@ test {
 
 jacoco {
     toolVersion = "0.8.6"
-    reportsDirectory = file("$buildDir/reports/jacoco")
 }
 
 jacocoTestReport {
     reports {
-        xml.enabled false
-        csv.enabled false
-        html.destination file("${buildDir}/jacocoHtml")
+        xml.enabled true
+        html.enabled false        
     }
 }

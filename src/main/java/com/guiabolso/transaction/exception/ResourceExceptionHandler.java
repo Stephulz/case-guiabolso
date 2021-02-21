@@ -26,7 +26,7 @@ public class ResourceExceptionHandler {
 	public ResponseEntity<StandardError> requestHandlingNoHandlerFound(NoHandlerFoundException e,
 			HttpServletRequest request) {
 		StandardError err = new StandardError(System.currentTimeMillis(), HttpStatus.NOT_FOUND.value(), "Not found",
-				"Recurso n„o encontrado", request.getRequestURI());
+				"Recurso n√£o encontrado", request.getRequestURI());
 		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(err);
 	}
 
