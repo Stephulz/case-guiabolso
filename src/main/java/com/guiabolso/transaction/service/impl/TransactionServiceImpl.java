@@ -38,9 +38,9 @@ public class TransactionServiceImpl implements TransactionService {
 		if (map.containsKey(finalKey)) {
 			return map.get(finalKey);
 		} else {
-			Integer timonth = (Integer.parseInt(id.substring(0, 1)) * month);
+			Integer times = (Integer.parseInt(id.substring(0, 1)) * month);
 			List<Transaction> generatedList = new ArrayList<Transaction>();
-			for (int i = 0; i < timonth; i++) {
+			for (int i = 0; i < times; i++) {
 				generatedList.add(generateTransaction(id, year, month));
 			}
 			map.put(finalKey, generatedList);
@@ -67,7 +67,7 @@ public class TransactionServiceImpl implements TransactionService {
 	private Transaction generateTransaction(String id, Integer year, Integer month) {
 		Integer randomValue = ThreadLocalRandom.current().nextInt(Constants.minValue, Constants.maxValue);
 		String randomDescription = generateRandomDescription(ThreadLocalRandom.current().nextInt(4, 6)).toString();
-		Long randomTimonthtamp = generateRandomTimonthtamp(year, ThreadLocalRandom.current().nextInt(0, month));
+		Long randomTimonthtamp = generateRandomTimestamp(year, ThreadLocalRandom.current().nextInt(0, month));
 
 		Transaction transaction = new Transaction(randomDescription, randomTimonthtamp, randomValue);
 		return transaction;
@@ -92,7 +92,7 @@ public class TransactionServiceImpl implements TransactionService {
 		return randomStringsBuilder.toString();
 	}
 
-	private Long generateRandomTimonthtamp(Integer year, Integer month) {
+	private Long generateRandomTimestamp(Integer year, Integer month) {
 		Calendar cld = Calendar.getInstance();
 		cld.set(Calendar.YEAR, year);
 		cld.set(Calendar.MONTH, month);
