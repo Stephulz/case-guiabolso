@@ -54,7 +54,7 @@ Valor:
 
 - cada transação deve ter um `valor baseado no id do usuário, no índice da transação e no mês`
 - o valor da transação deve ser representado por um `número inteiro` (reais sem centavos)
-- o valor da transação deve estar entre `-9.999.999 e 9.999.999`, inclusive
+- o valor da transação deve estar entre `-9.999.999 e 9.999.999`
 
 Data:
 
